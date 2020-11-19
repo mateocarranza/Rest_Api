@@ -1,4 +1,4 @@
-package pkg
+package gopher
 
 import (
 	"encoding/json"
@@ -23,7 +23,7 @@ type Address struct {
 
 var people []Person
 
-//GetPeopleEndpoint devuel al servidor toda la informacion de las personas
+//GetPeopleEndpoint devuelve al servidor toda la informacion de las personas
 func GetPeopleEndpoint(a http.ResponseWriter, request *http.Request) {
 	json.NewEncoder(a).Encode(people)
 }

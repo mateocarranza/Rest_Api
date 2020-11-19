@@ -3,6 +3,8 @@ package server
 import (
 	"net/http"
 
+	gopher "github.com/mateocarranza/Rest_Api/src/Myproyect/pkg"
+
 	"github.com/gorilla/mux"
 )
 
@@ -20,8 +22,8 @@ func New() Server {
 	a := &api{}
 
 	r := mux.NewRouter()
-	r.HandleFunc("/people", GetPeopleEndpoint).Methods("Get")
-	r.HandleFunc("/people/{id}", GetPersonEndpoint).Methods("Get")
+	r.HandleFunc("/people", gopher.GetPeopleEndpoint).Methods("Get")
+	r.HandleFunc("/people/{id}", gopher.GetPersonEndpoint).Methods("Get")
 
 	a.router = r
 
