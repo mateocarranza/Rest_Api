@@ -21,17 +21,23 @@ type Address struct {
 	State string `json:"state,omitempty"`
 }
 
-var people []Person
+//People contiene todas las personas en json
+var People []Person
+
+//SetPeople guarda una nueva personas
+func SetPeople(id string, name string, lastname string, city string, state string) {
+	People = append(People, Person{ID: id, FirstName: name, LastName: lastname, Address: &Address{City: city, State: state}})
+}
 
 //GetPeopleEndpoint devuelve al servidor toda la informacion de las personas
 func GetPeopleEndpoint(a http.ResponseWriter, request *http.Request) {
-	json.NewEncoder(a).Encode(people)
+	json.NewEncoder(a).Encode(People)
 }
 
 //GetPersonEndpoint devuelve la informacion de una persona pedida por el servidor
 func GetPersonEndpoint(a http.ResponseWriter, request *http.Request) {
 	params := mux.Vars(request)
-	for _, item := range people {
+	for _, item := range People {
 		if item.ID == params["id"] {
 			json.NewEncoder(a).Encode(item)
 			return
